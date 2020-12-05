@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftPLUSMINUSleftTIMESDIVIDEleftPOWERrightUMINUSDIVIDE EQUALS LPAREN MINUS MINUSPOWER NAME NUMBER PLUS POWER RPAREN TIMESstatement : NAME EQUALS expressionstatement : expressionexpression : expression PLUS expression\n                  | expression MINUS expression\n                  | expression TIMES expression\n                  | expression DIVIDE expression\n                  | expression POWER NUMBERexpression : expression MINUSPOWER NUMBERexpression : MINUS expression %prec UMINUSexpression : LPAREN expression RPARENexpression : NUMBERexpression : NAME'
+_lr_signature = 'leftPLUSMINUSleftTIMESDIVIDEleftPOWERrightUMINUSDIVIDE EQUALS LPAREN MINUS MINUSPOWER NAME NEWLINE NUMBER PLUS POWER RPAREN TIMESstatement : NAME EQUALS expressionstatement : NEWLINEstatement : expressionexpression : expression PLUS expression\n                  | expression MINUS expression\n                  | expression TIMES expression\n                  | expression DIVIDE expression\n                  | expression POWER NUMBERexpression : expression MINUSPOWER NUMBERexpression : MINUS expression %prec UMINUSexpression : LPAREN expression RPARENexpression : NUMBERexpression : NAME'
     
-_lr_action_items = {'NAME':([0,4,6,7,8,9,10,11,],[2,15,15,15,15,15,15,15,]),'MINUS':([0,2,3,4,5,6,7,8,9,10,11,14,15,16,17,18,19,20,21,22,23,24,],[4,-12,9,4,-11,4,4,4,4,4,4,-9,-12,9,9,-3,-4,-5,-6,-7,-8,-10,]),'LPAREN':([0,4,6,7,8,9,10,11,],[6,6,6,6,6,6,6,6,]),'NUMBER':([0,4,6,7,8,9,10,11,12,13,],[5,5,5,5,5,5,5,5,22,23,]),'$end':([1,2,3,5,14,15,17,18,19,20,21,22,23,24,],[0,-12,-2,-11,-9,-12,-1,-3,-4,-5,-6,-7,-8,-10,]),'EQUALS':([2,],[7,]),'PLUS':([2,3,5,14,15,16,17,18,19,20,21,22,23,24,],[-12,8,-11,-9,-12,8,8,-3,-4,-5,-6,-7,-8,-10,]),'TIMES':([2,3,5,14,15,16,17,18,19,20,21,22,23,24,],[-12,10,-11,-9,-12,10,10,10,10,-5,-6,-7,-8,-10,]),'DIVIDE':([2,3,5,14,15,16,17,18,19,20,21,22,23,24,],[-12,11,-11,-9,-12,11,11,11,11,-5,-6,-7,-8,-10,]),'POWER':([2,3,5,14,15,16,17,18,19,20,21,22,23,24,],[-12,12,-11,-9,-12,12,12,12,12,12,12,-7,-8,-10,]),'MINUSPOWER':([2,3,5,14,15,16,17,18,19,20,21,22,23,24,],[-12,13,-11,-9,-12,13,13,-3,-4,-5,-6,-7,-8,-10,]),'RPAREN':([5,14,15,16,18,19,20,21,22,23,24,],[-11,-9,-12,24,-3,-4,-5,-6,-7,-8,-10,]),}
+_lr_action_items = {'NAME':([0,5,7,8,9,10,11,12,],[2,16,16,16,16,16,16,16,]),'NEWLINE':([0,],[4,]),'MINUS':([0,2,3,5,6,7,8,9,10,11,12,15,16,17,18,19,20,21,22,23,24,25,],[5,-13,10,5,-12,5,5,5,5,5,5,-10,-13,10,10,-4,-5,-6,-7,-8,-9,-11,]),'LPAREN':([0,5,7,8,9,10,11,12,],[7,7,7,7,7,7,7,7,]),'NUMBER':([0,5,7,8,9,10,11,12,13,14,],[6,6,6,6,6,6,6,6,23,24,]),'$end':([1,2,3,4,6,15,16,18,19,20,21,22,23,24,25,],[0,-13,-3,-2,-12,-10,-13,-1,-4,-5,-6,-7,-8,-9,-11,]),'EQUALS':([2,],[8,]),'PLUS':([2,3,6,15,16,17,18,19,20,21,22,23,24,25,],[-13,9,-12,-10,-13,9,9,-4,-5,-6,-7,-8,-9,-11,]),'TIMES':([2,3,6,15,16,17,18,19,20,21,22,23,24,25,],[-13,11,-12,-10,-13,11,11,11,11,-6,-7,-8,-9,-11,]),'DIVIDE':([2,3,6,15,16,17,18,19,20,21,22,23,24,25,],[-13,12,-12,-10,-13,12,12,12,12,-6,-7,-8,-9,-11,]),'POWER':([2,3,6,15,16,17,18,19,20,21,22,23,24,25,],[-13,13,-12,-10,-13,13,13,13,13,13,13,-8,-9,-11,]),'MINUSPOWER':([2,3,6,15,16,17,18,19,20,21,22,23,24,25,],[-13,14,-12,-10,-13,14,14,-4,-5,-6,-7,-8,-9,-11,]),'RPAREN':([6,15,16,17,19,20,21,22,23,24,25,],[-12,-10,-13,25,-4,-5,-6,-7,-8,-9,-11,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'statement':([0,],[1,]),'expression':([0,4,6,7,8,9,10,11,],[3,14,16,17,18,19,20,21,]),}
+_lr_goto_items = {'statement':([0,],[1,]),'expression':([0,5,7,8,9,10,11,12,],[3,15,17,18,19,20,21,22,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,16 +27,17 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> statement","S'",1,None,None,None),
-  ('statement -> NAME EQUALS expression','statement',3,'p_statement_assign','main.py',78),
-  ('statement -> expression','statement',1,'p_statement_expr','main.py',83),
-  ('expression -> expression PLUS expression','expression',3,'p_expression_binop','main.py',88),
-  ('expression -> expression MINUS expression','expression',3,'p_expression_binop','main.py',89),
-  ('expression -> expression TIMES expression','expression',3,'p_expression_binop','main.py',90),
-  ('expression -> expression DIVIDE expression','expression',3,'p_expression_binop','main.py',91),
-  ('expression -> expression POWER NUMBER','expression',3,'p_expression_binop','main.py',92),
-  ('expression -> expression MINUSPOWER NUMBER','expression',3,'p_expression_minuspower','main.py',106),
-  ('expression -> MINUS expression','expression',2,'p_expression_uminus','main.py',110),
-  ('expression -> LPAREN expression RPAREN','expression',3,'p_expression_group','main.py',115),
-  ('expression -> NUMBER','expression',1,'p_expression_number','main.py',120),
-  ('expression -> NAME','expression',1,'p_expression_name','main.py',125),
+  ('statement -> NAME EQUALS expression','statement',3,'p_statement_assign','main.py',84),
+  ('statement -> NEWLINE','statement',1,'p_statement_newline','main.py',88),
+  ('statement -> expression','statement',1,'p_statement_expr','main.py',93),
+  ('expression -> expression PLUS expression','expression',3,'p_expression_binop','main.py',99),
+  ('expression -> expression MINUS expression','expression',3,'p_expression_binop','main.py',100),
+  ('expression -> expression TIMES expression','expression',3,'p_expression_binop','main.py',101),
+  ('expression -> expression DIVIDE expression','expression',3,'p_expression_binop','main.py',102),
+  ('expression -> expression POWER NUMBER','expression',3,'p_expression_binop','main.py',103),
+  ('expression -> expression MINUSPOWER NUMBER','expression',3,'p_expression_minuspower','main.py',127),
+  ('expression -> MINUS expression','expression',2,'p_expression_uminus','main.py',132),
+  ('expression -> LPAREN expression RPAREN','expression',3,'p_expression_group','main.py',137),
+  ('expression -> NUMBER','expression',1,'p_expression_number','main.py',142),
+  ('expression -> NAME','expression',1,'p_expression_name','main.py',147),
 ]

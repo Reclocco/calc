@@ -23,12 +23,14 @@ def divide(a, b):
 
 
 tokens = (
+    'NEWLINE',
     'NAME', 'NUMBER',
     'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'POWER', 'MINUSPOWER', 'EQUALS',
     'LPAREN', 'RPAREN',
 )
 
 # Tokens
+t_NEWLINE = r'\\\n'
 t_PLUS = r'\+'
 t_MINUS = r'-'
 t_TIMES = r'\*'
@@ -54,7 +56,7 @@ def t_NUMBER(t):
 
 t_ignore = " \t"
 t_ignore_COMMENT = r'\#.*'
-t_ignore_NEWLINE = r'\\n'
+t_ignore_NEWLINE = r'\\\n'
 
 
 def t_newline(t):
@@ -81,6 +83,10 @@ lexer = lex.lex()
 def p_statement_assign(t):
     'statement : NAME EQUALS expression'
     names[t[1]] = t[3]
+
+def p_statement_newline(t):
+    'statement : NEWLINE'
+    pass
 
 
 def p_statement_expr(t):

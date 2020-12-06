@@ -2,8 +2,6 @@ import ply.lex as lex
 import ply.yacc as yacc
 
 
-
-
 def modulo(val):
     mod = val % 1234577
     if mod < 0:

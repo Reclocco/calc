@@ -23,14 +23,17 @@ def divide(a, b):
 
 
 tokens = (
-    'NEWLINE',
+    'SIGN',
     'NAME', 'NUMBER',
     'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'POWER', 'MINUSPOWER', 'EQUALS',
     'LPAREN', 'RPAREN',
 )
 
+states = (
+    ('comment', 'exclusive'),
+)
+
 # Tokens
-t_NEWLINE = r'\\\n'
 t_PLUS = r'\+'
 t_MINUS = r'-'
 t_TIMES = r'\*'
@@ -55,8 +58,27 @@ def t_NUMBER(t):
 
 
 t_ignore = " \t"
-t_ignore_COMMENT = r'\#.*'
-t_ignore_NEWLINE = r'\\\n'
+
+
+def t_startcom(t):
+    r'\\\n\#'
+    t.lexer.begin('comment')
+
+def t_comment_continue(t):
+    r'\\\n'
+
+
+def t_comment_SIGN(t):
+    r'.'
+
+
+def t_comment_endcom(t):
+    r'\n'
+    t.lexer.begin('INITIAL')
+
+
+def t_INITIAL_comment_skipline(t):
+    r'\\\n'
 
 
 def t_newline(t):
@@ -83,10 +105,6 @@ lexer = lex.lex()
 def p_statement_assign(t):
     'statement : NAME EQUALS expression'
     names[t[1]] = t[3]
-
-def p_statement_newline(t):
-    'statement : NEWLINE'
-    pass
 
 
 def p_statement_expr(t):
@@ -158,14 +176,9 @@ def p_error(t):
 
 parser = yacc.yacc()
 
+calc = open("in.txt", "r").read()
 
-while True:
-    try:
-        s = input('calc > ')
-    except EOFError:
-        break
-
-    try:
-        parser.parse(s)
-    except AttributeError:
-        pass
+try:
+    parser.parse(calc)
+except AttributeError:
+    pass
